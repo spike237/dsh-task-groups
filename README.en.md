@@ -39,8 +39,6 @@ Group conversations the way you work, then check the bell when several tasks are
   </tr>
 </table>
 
-<sub>Images are edited from actual screenshots, with demo task and project names and refined typography. The background and theme depend on your DSH settings. The UI shown is in Chinese.</sub>
-
 ### 🗂️ Organize tasks your way
 
 - **Custom groups:** name, color, collapse and expand groups of related conversations.
