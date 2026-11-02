@@ -1,0 +1,50 @@
+{
+  "name": "dsh-task-groups",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Task groups and an activity bell for the DSH sidebar: organize sessions by your own groups and follow running/unread conversations.",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-session",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node test/render.test.mjs",
+    "smoke": "node tools/smoke-host.mjs",
+    "install-profile": "node tools/enable-profile.mjs",
+    "uninstall-profile": "node tools/enable-profile.mjs --remove"
+  },
+  "license": "MIT"
+}

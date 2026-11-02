@@ -1,0 +1,4 @@
+# dsh-task-groups bundle patch: one plugin row, no config.
+- insert:
+    - id: task-groups
+      name: 'dsh-task-groups'
