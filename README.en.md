@@ -30,11 +30,11 @@ Group conversations the way you work, then check the bell when several tasks are
   <tr>
     <td align="center" valign="top">
       <p>Group by topic. Drag to arrange.</p>
-      <a href="docs/images/groups.png"><img src="docs/images/groups.png" width="73.6864%" alt="Group view with color-coded plugin and documentation groups and their tasks."></a>
+      <a href="docs/images/groups.png"><img src="docs/images/groups.png" width="380" alt="Group view with color-coded plugin and documentation groups and their tasks."></a>
     </td>
     <td align="center" valign="top">
       <p>Find running, waiting and unread conversations.</p>
-      <a href="docs/images/activity.png"><img src="docs/images/activity.png" width="100%" alt="Activity view with priority conversations at the top and other conversations below."></a>
+      <a href="docs/images/activity.png"><img src="docs/images/activity.png" width="380" alt="Activity view with priority conversations at the top and other conversations below."></a>
     </td>
   </tr>
 </table>
