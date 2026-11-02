@@ -1,6 +1,6 @@
 {
   "name": "dsh-task-groups",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Task groups and an activity bell for the DSH sidebar: organize sessions by your own groups and follow running/unread conversations.",
   "type": "module",
   "main": "lib/index.js",
