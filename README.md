@@ -30,11 +30,11 @@
   <tr>
     <td align="center" valign="top">
       <p>按主题归类，自由拖拽排序。</p>
-      <a href="docs/images/groups.png"><img src="docs/images/groups.png" width="380" alt="任务分组视图：用不同颜色区分插件与文档分组，组内展示相关任务。"></a>
+      <a href="docs/images/groups.png"><img src="docs/images/groups.png" width="73.6864%" alt="任务分组视图：用不同颜色区分插件与文档分组，组内展示相关任务。"></a>
     </td>
     <td align="center" valign="top">
       <p>集中查看运行中、待确认和未读会话。</p>
-      <a href="docs/images/activity.png"><img src="docs/images/activity.png" width="380" alt="活动视图：需要关注的会话集中显示在优先级区域，其余会话显示在其他区域。"></a>
+      <a href="docs/images/activity.png"><img src="docs/images/activity.png" width="100%" alt="活动视图：需要关注的会话集中显示在优先级区域，其余会话显示在其他区域。"></a>
     </td>
   </tr>
 </table>
