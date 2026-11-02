@@ -4,7 +4,7 @@
 
 Custom groups and an activity bell for the DeepSeek Harness sidebar.
 
-![Group view](docs/sidebar.png)
+![Group view](docs/sidebar.svg)
 
 ## Features
 
@@ -14,7 +14,7 @@ Custom groups and an activity bell for the DeepSeek Harness sidebar.
 - **Drag & drop** — one gesture for tasks and groups: floating card, blue insertion line, auto-scroll. Drop inside a group to join it, outside to leave it.
 - **Context menu** — rename, pin, mark unread, branch, copy working directory / session id, move to group, archive.
 
-![Activity view](docs/activity.png)
+![Activity view](docs/activity.svg)
 
 ## Install
 
