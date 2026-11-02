@@ -1,7 +1,6 @@
 {
   "name": "dsh-task-groups",
   "version": "0.1.0",
-  "private": true,
   "description": "Task groups and an activity bell for the DSH sidebar: organize sessions by your own groups and follow running/unread conversations.",
   "type": "module",
   "main": "lib/index.js",
@@ -18,9 +17,31 @@
   },
   "files": [
     "lib",
+    "docs",
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "README.en.md",
+    "LICENSE"
   ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "sidebar",
+    "task-groups",
+    "activity"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spike237/dsh-task-groups.git"
+  },
+  "homepage": "https://github.com/spike237/dsh-task-groups#readme",
+  "bugs": {
+    "url": "https://github.com/spike237/dsh-task-groups/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
