@@ -73,6 +73,12 @@ cd dsh-task-groups
 node tools/enable-profile.mjs
 ```
 
+也可以直接从 npm 安装（需要 DSH 0.2.1+）：
+
+```powershell
+dsh plugin --profile desktop add dsh-task-groups
+```
+
 **重启 DSH**，侧边栏出现「分组 / 项目」切换和小铃铛后即可使用。
 
 > [!NOTE]

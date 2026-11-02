@@ -73,6 +73,12 @@ cd dsh-task-groups
 node tools/enable-profile.mjs
 ```
 
+Or install from npm (requires DSH 0.2.1+):
+
+```powershell
+dsh plugin --profile desktop add dsh-task-groups
+```
+
 **Restart DSH.** The sidebar will show the “Groups / Projects” toggle and the bell.
 
 > [!NOTE]
