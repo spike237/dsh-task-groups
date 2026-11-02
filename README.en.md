@@ -109,10 +109,11 @@ If you installed with `--home` or `--profile`, use the same arguments when unins
 
 ## 🧭 Usage
 
-Start with **`⋯` → New group (新建分组)** at the top of the sidebar, then drag related tasks into it.
+Right-click a group to open its menu, choose **New group (新建分组)**, then drag related tasks into it.
 
 | Action | How |
 | --- | --- |
+| Create a group | Right-click a group → New group, or use the top `⋯` menu |
 | Switch views | Click “Groups / Projects” (分组 / 项目) |
 | Rename or recolor a group | Click its colored `#` icon |
 | Start a task in a group | Click the group’s `⊕` button |
@@ -122,7 +123,7 @@ Start with **`⋯` → New group (新建分组)** at the top of the sidebar, the
 | Search tasks | Top `⋯` → Search tasks (搜索任务) |
 | More task actions | Right-click to rename, pin, mark unread, branch, move to a group or archive |
 
-Deleting a group removes its assignments and keeps its tasks. To archive conversations in bulk, use the archive action in the group’s `⋯` menu.
+Deleting a group removes its assignments and keeps its tasks. Right-click a group to edit it, mark all its conversations as read, or archive them in bulk.
 
 ## 🛠️ Development and data
 
