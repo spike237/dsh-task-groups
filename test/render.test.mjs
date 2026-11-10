@@ -619,6 +619,25 @@ if (!calls.some((entry) => entry[0] === 'createWorkspace' && entry[1] === 'D:\\d
   fail('新建项目 should register the picked directory as a workspace')
 }
 
+// The Desktop preload bridge wins over the Host picker when present.
+globalThis.__DSH_DIRECTORY_PICKER__ = {
+  pick: async () => {
+    calls.push(['bridgePick'])
+    return 'D:\\develop\\bridge-project'
+  },
+}
+await click(container.querySelector('button[aria-label="任务列表选项"]'))
+await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)) })
+const bridgeItem = menuItems().find((node) => node.textContent.trim().startsWith('新建项目'))
+if (!bridgeItem) fail('projects view menu lost 新建项目 after reopening')
+await click(bridgeItem)
+await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)) })
+delete globalThis.__DSH_DIRECTORY_PICKER__
+if (!calls.some((entry) => entry[0] === 'bridgePick')) fail('新建项目 should prefer the Desktop preload bridge')
+if (!calls.some((entry) => entry[0] === 'createWorkspace' && entry[1] === 'D:\\develop\\bridge-project')) {
+  fail('新建项目 should register the bridge-picked directory')
+}
+
 await click(tab('分组'))
 
 // Double-click window: two deliberate clicks toggle twice; a fast pair renames.
