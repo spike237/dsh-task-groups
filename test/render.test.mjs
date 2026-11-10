@@ -243,6 +243,16 @@ const ctx = {
     pinSession: async (id) => calls.push(['pin', id]),
     unpinSession: async (id) => calls.push(['unpin', id]),
     startSession: (id) => calls.push(['start', id]),
+    pickDirectory: async () => {
+      calls.push(['pickDirectory'])
+      return 'D:\\develop\\demo-project'
+    },
+  },
+  workspaces: {
+    create: async (input) => {
+      calls.push(['createWorkspace', input?.path])
+      return { workspaceId: 'w2', path: input?.path, title: 'demo-project', sessionIds: [] }
+    },
   },
   sessions: {
     rename: async (id, title) => {
@@ -593,6 +603,22 @@ const less = [...container.querySelectorAll('button')].find((node) => node.textC
 if (!less) fail('projects view is missing 显示更少 after expansion')
 await click(less)
 if (projectRows().length !== 5) fail(`显示更少 should restore the watermark, got ${projectRows().length}`)
+
+// Projects view offers "新建项目…" (not 新建分组) and wires it to the directory
+// picker plus workspaces.create.
+const headerMenuButton = container.querySelector('button[aria-label="任务列表选项"]')
+if (!headerMenuButton) fail('header is missing the options button')
+await click(headerMenuButton)
+const projectItem = menuItems().find((node) => node.textContent.trim().startsWith('新建项目'))
+if (!projectItem) fail('projects view menu is missing 新建项目')
+if (menuItems().some((node) => node.textContent.trim() === '新建分组')) fail('projects view should not offer 新建分组')
+await click(projectItem)
+await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)) })
+if (!calls.some((entry) => entry[0] === 'pickDirectory')) fail('新建项目 should open the directory picker')
+if (!calls.some((entry) => entry[0] === 'createWorkspace' && entry[1] === 'D:\\develop\\demo-project')) {
+  fail('新建项目 should register the picked directory as a workspace')
+}
+
 await click(tab('分组'))
 
 // Double-click window: two deliberate clicks toggle twice; a fast pair renames.
