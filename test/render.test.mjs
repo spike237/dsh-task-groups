@@ -253,6 +253,9 @@ const ctx = {
       calls.push(['createWorkspace', input?.path])
       return { workspaceId: 'w2', path: input?.path, title: 'demo-project', sessionIds: [] }
     },
+    delete: async (workspaceId) => {
+      calls.push(['deleteWorkspace', workspaceId])
+    },
   },
   sessions: {
     rename: async (id, title) => {
@@ -637,6 +640,27 @@ if (!calls.some((entry) => entry[0] === 'bridgePick')) fail('新建项目 should
 if (!calls.some((entry) => entry[0] === 'createWorkspace' && entry[1] === 'D:\\develop\\bridge-project')) {
   fail('新建项目 should register the bridge-picked directory')
 }
+
+// Each project header offers 删除项目 behind a confirmation dialog.
+const projectMenuButton = container.querySelector('button[aria-label="项目选项"]')
+if (!projectMenuButton) fail('project header is missing the 项目选项 button')
+await click(projectMenuButton)
+const deleteItem = menuItems().find((node) => node.textContent.trim() === '删除项目')
+if (!deleteItem) fail('project menu is missing 删除项目')
+await click(deleteItem)
+await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)) })
+const dialog = document.querySelector('.dtg-dialog')
+if (!dialog) fail('删除项目 should open a confirmation dialog')
+if (!dialog.textContent.includes('删除项目？')) fail('confirmation dialog is missing its title')
+if (calls.some((entry) => entry[0] === 'deleteWorkspace')) fail('删除项目 must not delete before confirmation')
+const confirmButton = dialog.querySelector('.dtg-btn.is-danger')
+if (!confirmButton) fail('confirmation dialog is missing the 删除 button')
+await click(confirmButton)
+await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)) })
+if (!calls.some((entry) => entry[0] === 'deleteWorkspace' && entry[1] === 'w1')) {
+  fail('confirming 删除项目 should delete the workspace')
+}
+if (document.querySelector('.dtg-dialog')) fail('confirmation dialog should close after deleting')
 
 await click(tab('分组'))
 
