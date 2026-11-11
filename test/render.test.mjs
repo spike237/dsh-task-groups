@@ -156,6 +156,14 @@ const workspaces = {
       createdAt: '',
       updatedAt: '',
     },
+    {
+      workspaceId: 'w2',
+      path: 'D:\\develop\\papers',
+      title: 'papers',
+      sessionIds: [],
+      createdAt: '',
+      updatedAt: '',
+    },
   ],
   archivedSessionIds: [],
   pinnedSessionIds: ['s2'],
@@ -255,6 +263,9 @@ const ctx = {
     },
     delete: async (workspaceId) => {
       calls.push(['deleteWorkspace', workspaceId])
+    },
+    insertBefore: async (workspaceId, beforeWorkspaceId) => {
+      calls.push(['insertBefore', workspaceId, beforeWorkspaceId])
     },
   },
   sessions: {
@@ -661,6 +672,35 @@ if (!calls.some((entry) => entry[0] === 'deleteWorkspace' && entry[1] === 'w1'))
   fail('confirming 删除项目 should delete the workspace')
 }
 if (document.querySelector('.dtg-dialog')) fail('confirmation dialog should close after deleting')
+
+// Dragging a project header reorders the Workspaces themselves.
+const projectSections = [...container.querySelectorAll('[data-project-id]')]
+if (projectSections.length < 2) fail(`projects view should render both workspaces, got ${projectSections.length}`)
+projectSections.forEach((element, index) => {
+  element.getBoundingClientRect = () => ({
+    top: 100 + index * 40,
+    bottom: 136 + index * 40,
+    height: 36,
+    left: 8,
+    width: 240,
+    right: 248,
+    x: 8,
+    y: 100 + index * 40,
+  })
+})
+const firstProjectHead = projectSections[0].querySelector('.dtg-group-head')
+await act(async () => {
+  firstProjectHead.dispatchEvent(new dom.window.MouseEvent('pointerdown', { bubbles: true, clientX: 20, clientY: 110, button: 0 }))
+  dom.window.dispatchEvent(new dom.window.MouseEvent('pointermove', { bubbles: true, clientX: 20, clientY: 180 }))
+})
+if (!document.querySelector('.dtg-project-line')) fail('dragging a project should show an insertion line')
+await act(async () => {
+  dom.window.dispatchEvent(new dom.window.MouseEvent('pointerup', { bubbles: true }))
+  await new Promise((resolve) => setTimeout(resolve, 20))
+})
+if (!calls.some((entry) => entry[0] === 'insertBefore' && entry[1] === 'w1')) {
+  fail('dropping a project below another should call workspaces.insertBefore')
+}
 
 await click(tab('分组'))
 
